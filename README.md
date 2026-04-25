@@ -15,7 +15,7 @@ https://hack.arizona.edu/workshops
 8. `cdk deploy`
  - Confirm the infrstrucutre changes with "Y"
  - This will take 5-10 minutes to deploy
-
+9. Add the .txt files from the KiroStreeringAndKnowedgeBase folder to the biosphere2stack-docsbucket S3 bucket
 
 # Testing
 
