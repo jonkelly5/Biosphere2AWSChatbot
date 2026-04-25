@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biosphere 2 Q&amp;A</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; max-width: 700px; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+    h1 { margin-bottom: 1.5rem; }
+    form { display: flex; gap: .5rem; margin-bottom: 2rem; }
+    input { flex: 1; padding: .6rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; }
+    button { padding: .6rem 1.2rem; font-size: 1rem; background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+    button:disabled { opacity: .5; cursor: not-allowed; }
+    .entry { background: #f5f5f5; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
+    .entry .q { font-weight: 600; margin-bottom: .4rem; }
+    .entry .a { white-space: pre-wrap; }
+    .error { color: #dc2626; }
+  </style>
+</head>
+<body>
+  <h1>🌿 Biosphere 2 Q&amp;A</h1>
+  <form id="form">
+    <label for="question" class="sr-only" style="position:absolute;left:-9999px">Question</label>
+    <input id="question" name="question" placeholder="Ask about Biosphere 2..." required>
+    <button type="submit">Ask</button>
+  </form>
+  <div id="history"></div>
+  <script>
+    const form = document.getElementById("form");
+    const input = document.getElementById("question");
+    const history = document.getElementById("history");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const question = input.value.trim();
+      if (!question) return;
+
+      const entry = document.createElement("div");
+      entry.className = "entry";
+      entry.innerHTML = `<div class="q">Q: ${question}</div><div class="a">Thinking...</div>`;
+      history.prepend(entry);
+      input.value = "";
+      form.querySelector("button").disabled = true;
+
+      try {
+        const res = await fetch("/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question }),
+        });
+        const data = await res.json();
+        entry.querySelector(".a").textContent = res.ok ? data.answer : `Error: ${data.error || res.statusText}`;
+        if (!res.ok) entry.querySelector(".a").classList.add("error");
+      } catch (err) {
+        entry.querySelector(".a").textContent = "Error: " + err.message;
+        entry.querySelector(".a").classList.add("error");
+      } finally {
+        form.querySelector("button").disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
