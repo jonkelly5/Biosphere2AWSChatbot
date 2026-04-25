@@ -1,2 +1,2 @@
 # Biosphere2AWSChatbot
-An AWS Chatbot for Biosphere 2 built with bedrock and CDK
+The project created as part of the Amazon AWS HackAZ demo. 
