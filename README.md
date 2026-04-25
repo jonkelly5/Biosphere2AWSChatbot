@@ -13,7 +13,7 @@ https://hack.arizona.edu/workshops
 
 # Testing
 
-curl -X POST {API-Gateway-Invoke-URL}/ask  -H "Content-Type: application/json" -d '{"question": "When did construction of Biosphere 2 begin?"}'
+Run `curl -X POST {API-Gateway-Invoke-URL}/ask  -H "Content-Type: application/json" -d '{"question": "When did construction of Biosphere 2 begin?"}'` in your terminal
 - Get your {API-Gateway-Invoke-URL} from the console in APIGateway -> Deploy -> Stages
 
 Vist https://{CloudfrontDistrbution Domain Id}.cloudfront.net
