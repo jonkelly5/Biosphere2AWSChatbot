@@ -6,7 +6,7 @@ https://hack.arizona.edu/workshops
 
 1. Create AWS account and IAM user and configure access keys in your terminal with `aws configure`
  - https://docs.aws.amazon.com/cli/v1/userguide/cli-authentication-user.html
-3. Replace {AWS-account-id} in the project with your accountId
+3. Replace {AWS-Account-id} in the project with your accountId
 4. `npm install`
 5. `cdk bootstrap`
 6. `cdk deploy`
