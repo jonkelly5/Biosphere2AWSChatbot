@@ -7,7 +7,7 @@ https://hack.arizona.edu/workshops
 1. Create AWS account and IAM user
    - https://docs.aws.amazon.com/cli/v1/userguide/cli-authentication-user.html
 2. Configure access keys in your terminal with `aws configure`
-3. Clone project
+3. Clone this git repo to your local
 4. Go into the code directory `cd Biosphere2AWSChatbot/biosphereAIDemo/`
 5. In bin/app.ts replace {AWS-Account-id} with your accountId 
 6. `npm install`
